@@ -6,12 +6,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.ForeignKey;
 
 @Entity
 @Table(name="joia")
 public class Joia implements Serializable {
     
+    private static final long serialVersionUID = 1L;
     
     @Id
     @GeneratedValue
@@ -25,12 +28,22 @@ public class Joia implements Serializable {
     private Integer nuPeso;
     @Column(name="nu_Valor", nullable = false)
     private Integer nuValor;
-    // private Integer NU_ITEM; TIPO OBJETO
     @Column(name="ds_Descricao", nullable = false)
     private String dsDescricao;
     @Column(name="ds_Observacao", nullable = false)
     private String dsObservacao;
 
+    
+    @ManyToOne(optional = false)
+    @ForeignKey(name = "FK_Joia_TipoObjeto")
+    @Column(name="ds", nullable = false)
+    private Joia joia;
+    
+    
+    
+    
+    
+    
     public Joia(){
     }
     
